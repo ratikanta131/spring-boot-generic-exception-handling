@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Component;
 
+import com.example.springbootgenericexceptionhandling.exception.UserNotFoundException;
 import com.example.springbootgenericexceptionhandling.model.User;
 
 @Component
@@ -27,7 +28,8 @@ public class UserService {
 		if(userList.size() > 0)
 			return userList.get(0);
 		else
-			return null;
+			//There is no user with the given id, let's through exception
+			throw new UserNotFoundException("User with id = " + id + " not found");
 	}
 	
 	
